@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment android:name="com.example.mitch.databaseoftasks.TaskListFragment"
+    <fragment
         android:id="@+id/currentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
