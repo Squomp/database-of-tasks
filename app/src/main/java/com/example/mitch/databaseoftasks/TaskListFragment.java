@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -50,5 +51,13 @@ public class TaskListFragment extends ListFragment {
     public void onDetach() {
         super.onDetach();
         myListener = null;
+    }
+
+    public ArrayList<String> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(ArrayList<String> tasks) {
+        this.tasks = tasks;
     }
 }
