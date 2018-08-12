@@ -24,6 +24,7 @@ public class TaskListFragment extends ListFragment {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tasks);
         setListAdapter(adapter);
+        myListener = (OnFragmentInteractionListener) this.getActivity();
         FloatingActionButton btn = view.findViewById(R.id.addButton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
