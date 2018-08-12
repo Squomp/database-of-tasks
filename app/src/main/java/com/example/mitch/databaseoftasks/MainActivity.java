@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
@@ -32,5 +34,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             ft.replace(R.id.currentFragment, fragment);
             ft.commit();
         }
+    }
+
+    public void addOnClick(View view) {
+        // save to database
+
+        // switch fragments
+        changeFragment(1);
     }
 }
