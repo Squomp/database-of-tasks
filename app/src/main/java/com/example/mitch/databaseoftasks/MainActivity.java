@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void changeFragment(int id){
         Fragment fragment = null;
-        if (id == 1) {
+        if (id == 1) { // Task List
             fragment = new TaskListFragment();
             //TEMP
             ((TaskListFragment)fragment).getTasks().add("YEET");
@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.currentFragment, fragment);
             ft.commit();
-        } else if (id == 2) {
+        } else if (id == 2) { // Add task
             fragment = new AddFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.currentFragment, fragment);
             ft.commit();
-        } else if (id == 3) {
+        } else if (id == 3) { // Edit task
             fragment = new EditFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.currentFragment, fragment);
