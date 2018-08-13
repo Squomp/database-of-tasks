@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class EditFragment extends Fragment {
 
@@ -15,22 +16,21 @@ public class EditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_edit, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_edit, container, false);
 
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-        try {
-            myListener = (OnFragmentInteractionListener) childFragment.getActivity();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(childFragment.getActivity().toString() + " does not implement OnFragmentInteractionListener");
-        }
-    }
+        //initialize instance of interface so creating the onClick doesn't break on null
+        myListener = (OnFragmentInteractionListener) this.getActivity();
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        myListener = null;
+        //Get Save button
+        Button btn = view.findViewById(R.id.saveBtn);
+        //Create onClick to call changeFragment
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myListener.changeFragment(1);
+            }
+        });
+
+        return view;
     }
 }
