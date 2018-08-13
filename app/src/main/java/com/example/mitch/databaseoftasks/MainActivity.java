@@ -9,14 +9,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener { //AdapterView.OnItemClickListener
+public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener, AdapterView.OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        ListView listview = findViewById(android.R.id.list);
-//        listview.setOnItemClickListener(this);
+        ListView listview = findViewById(android.R.id.list);
+        listview.setOnItemClickListener(this);
         changeFragment(1);
     }
 
@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         }
     }
 
-//    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-//        // get item information
-//        Toast.makeText(this.getApplicationContext(), "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
-//        // switch fragment
-//        changeFragment(3);
-//    }
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+        // get item information
+        Toast.makeText(this.getApplicationContext(), "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
+        // switch fragment
+        changeFragment(3);
+    }
 
     public void addOnClick(View view) {
         // save to database

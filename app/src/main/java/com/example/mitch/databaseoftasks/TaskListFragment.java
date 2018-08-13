@@ -27,13 +27,13 @@ public class TaskListFragment extends ListFragment {
         //set view to fragment_task_list and inflate
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
+        //initialize instance of interface so creating the onClick doesn't break on null
+        myListener = (OnFragmentInteractionListener) this.getActivity();
         //create adapter for ListView
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tasks);
         //set adapter
         setListAdapter(adapter);
 
-        //initialize instance of interface so creating the onClick doesn't break on null
-        myListener = (OnFragmentInteractionListener) this.getActivity();
 
         //Get FAB
         FloatingActionButton btn = view.findViewById(R.id.addButton);
