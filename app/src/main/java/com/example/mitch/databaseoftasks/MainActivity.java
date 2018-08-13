@@ -17,16 +17,16 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         setContentView(R.layout.activity_main);
         ListView listview = findViewById(android.R.id.list);
         listview.setOnItemClickListener(this);
-        changeFragment(1);
+        changeFragment(1, null);
     }
 
     @Override
-    public void changeFragment(int id){
+    public void changeFragment(int id, Task task){
         Fragment fragment = null;
         if (id == 1) { // Task List
             fragment = new TaskListFragment();
             //TEMP
-            ((TaskListFragment)fragment).getTasks().add("YEET");
+            ((TaskListFragment)fragment).getTasks().add(new Task("YEET"));
             /////////////
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.currentFragment, fragment);
@@ -36,11 +36,16 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.currentFragment, fragment);
             ft.commit();
-        } else if (id == 3) { // Edit task
+        } else if (id == 3 && task != null) { // Edit task
             fragment = new EditFragment();
+            Bundle args = new Bundle();
+            args.putSerializable("taskToEdit", task);
+            fragment.setArguments(args);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.currentFragment, fragment);
             ft.commit();
+        } else if (id == 3 && task == null) {
+            Toast.makeText(this.getApplicationContext(),"task must not be null to edit task", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -48,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         // get item information
         Toast.makeText(this.getApplicationContext(), "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
         // switch fragment
-        changeFragment(3);
+        changeFragment(3, null);
     }
 
     public void addOnClick(View view) {
         // save to database
 
         // switch fragments
-        changeFragment(1);
+        changeFragment(1, null);
     }
 }

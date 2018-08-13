@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class TaskListFragment extends ListFragment {
 
-    private ArrayList<String> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks = new ArrayList<>();
     private CustomAdapter adapter;
     private OnFragmentInteractionListener myListener;
 
@@ -24,11 +24,6 @@ public class TaskListFragment extends ListFragment {
                              Bundle savedInstanceState) {
         //set view to fragment_task_list and inflate
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
-
-//        //create adapter for ListView
-//        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tasks);
-//        //set adapter
-//        setListAdapter(adapter);
 
         //initialize instance of interface so creating the onClick doesn't break on null
         myListener = (OnFragmentInteractionListener) this.getActivity();
@@ -39,7 +34,7 @@ public class TaskListFragment extends ListFragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myListener.changeFragment(2);
+                myListener.changeFragment(2, null);
             }
         });
 
@@ -48,16 +43,6 @@ public class TaskListFragment extends ListFragment {
 
         adapter = new CustomAdapter(view.getContext(), tasks);
         listview.setAdapter(adapter);
-
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-//                // get item information
-//                Toast.makeText(getActivity().getApplicationContext(), "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
-//                // switch fragment
-//                myListener.changeFragment(3);
-//            }
-//        });
 
         return view;
     }
@@ -69,11 +54,11 @@ public class TaskListFragment extends ListFragment {
 //        myListener.changeFragment(3);
 //    }
 
-    public ArrayList<String> getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(ArrayList<String> tasks) {
+    public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 }

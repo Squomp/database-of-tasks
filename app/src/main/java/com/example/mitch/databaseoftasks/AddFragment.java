@@ -27,7 +27,7 @@ public class AddFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myListener.changeFragment(1);
+                myListener.changeFragment(1, null);
             }
         });
 

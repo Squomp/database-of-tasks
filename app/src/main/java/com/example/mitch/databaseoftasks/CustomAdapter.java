@@ -16,11 +16,11 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<String> tasks;
+    private ArrayList<Task> tasks;
     private LayoutInflater inflater;
     private OnFragmentInteractionListener myListener;
 
-    public CustomAdapter(Context appContext, ArrayList<String> taskList){
+    public CustomAdapter(Context appContext, ArrayList<Task> taskList){
         this.context = appContext;
         this.tasks = taskList;
         inflater = (LayoutInflater.from(appContext));
@@ -45,11 +45,11 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.task_list_item, null);
 
-        TextView task = convertView.findViewById(R.id.taskTextView);
-        task.setText(tasks.get(position));
+        final TextView task = convertView.findViewById(R.id.taskTextView);
+        task.setText(tasks.get(position).getTaskDesc());
 
         // TODO get time and complete status from DB
 
@@ -58,20 +58,9 @@ public class CustomAdapter extends BaseAdapter {
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // switch fragment
-                myListener.changeFragment(3);
+                myListener.changeFragment(3, tasks.get(position));
             }
         });
         return convertView;
-    }
-
-
-
-
-    public ArrayList<String> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(ArrayList<String> tasks) {
-        this.tasks = tasks;
     }
 }
