@@ -47,18 +47,15 @@ public class TaskListFragment extends ListFragment {
         return view;
     }
 
-//    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-//        // get item information
-//        Toast.makeText(getActivity().getApplicationContext(), "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
-//        // switch fragment
-//        myListener.changeFragment(3);
-//    }
-
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 }
