@@ -9,14 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener, AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listview = findViewById(android.R.id.list);
-        listview.setOnItemClickListener(this);
         changeFragment(1, null);
     }
 
@@ -47,19 +45,5 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         } else if (id == 3 && task == null) {
             Toast.makeText(this.getApplicationContext(),"task must not be null to edit task", Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-        // get item information
-        Toast.makeText(this.getApplicationContext(), "Position: " + position + " ID: " + id, Toast.LENGTH_LONG).show();
-        // switch fragment
-        changeFragment(3, null);
-    }
-
-    public void addOnClick(View view) {
-        // save to database
-
-        // switch fragments
-        changeFragment(1, null);
     }
 }
