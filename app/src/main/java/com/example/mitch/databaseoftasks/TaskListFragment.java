@@ -40,7 +40,8 @@ public class TaskListFragment extends ListFragment {
 
         //Get listview and set clickListener
         ListView listview = view.findViewById(android.R.id.list);
-
+        tasks = new ArrayList<>(myListener.getTaskDB().getAllTasks());
+        Toast.makeText(getActivity(), tasks.size() + "", Toast.LENGTH_LONG).show();
         adapter = new CustomAdapter(view.getContext(), tasks);
         listview.setAdapter(adapter);
 

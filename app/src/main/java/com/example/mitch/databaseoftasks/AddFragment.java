@@ -17,23 +17,23 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add, container, false);
+        final View fragView = inflater.inflate(R.layout.fragment_add, container, false);
 
         //Set listener
         myListener = (OnFragmentInteractionListener) this.getActivity();
 
         //Get Save button
-        Button btn = view.findViewById(R.id.addSaveBtn);
+        Button btn = fragView.findViewById(R.id.addSaveBtn);
         //Create onClick to call changeFragment
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText desc = view.findViewById(R.id.addEditText);
+                EditText desc = fragView.findViewById(R.id.addEditText);
                 myListener.getTaskDB().addTask(new Task(desc.getText().toString()));
                 myListener.changeFragment(1, null);
             }
         });
 
-        return view;
+        return fragView;
     }
 }

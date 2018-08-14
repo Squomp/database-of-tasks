@@ -45,6 +45,9 @@ public class Tasks extends SQLiteOpenHelper{
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(KEY_DESC, task.getTaskDesc());
+        values.put(KEY_TIME, task.getTimeSpent());
+        values.put(KEY_COMPLETED, task.isCompleted());
         // Inserting Row
         db.insert(TABLE_TASKS, null, values);
         db.close(); // Closing database connection
