@@ -77,6 +77,16 @@ public class EditFragment extends Fragment {
             }
         });
 
+        //Get delete button and call remove
+        Button deleteBtn = view.findViewById(R.id.deleteButton);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myListener.getTaskDB().deleteTask(task);
+                myListener.changeFragment(1, null);
+            }
+        });
+
         //Get Save button
         Button btn = view.findViewById(R.id.saveBtn);
         //Create onClick to call changeFragment
