@@ -41,7 +41,7 @@ public class EditFragment extends Fragment {
 
         // set total time spent
         final TextView totalTime = view.findViewById(R.id.timeSpentTextView);
-        totalTime.setText("Total time spent: " + task.getTimeSpent() + " hours");
+        totalTime.setText("Total time spent: " + String.format("%.2f", task.getTimeSpent()) + " hours");
 
         // add listener to checkbox
         CheckBox cb = view.findViewById(R.id.completeBox);
