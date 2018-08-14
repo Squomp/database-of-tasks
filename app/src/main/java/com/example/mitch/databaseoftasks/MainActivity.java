@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
-    public Tasks taskDB;
+    private Tasks taskDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,4 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         }
     }
 
+    public Tasks getTaskDB() {
+        return taskDB;
+    }
 }
