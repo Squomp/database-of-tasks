@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class CustomAdapter extends BaseAdapter {
 
@@ -46,13 +49,21 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
         convertView = inflater.inflate(R.layout.task_list_item, null);
 
         final TextView task = convertView.findViewById(R.id.taskTextView);
         task.setText(tasks.get(position).getTaskDesc());
 
-        // TODO get time and complete status from DB
-
+        CheckBox cb = convertView.findViewById(R.id.completedCheckBox);
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Task t = tasks.get(position);
+                t.setCompleted(isChecked);
+                myListener.getTaskDB().updateTask(t);
+            }
+        });
 
         Button btn = convertView.findViewById(R.id.taskEditButton);
         btn.setOnClickListener(new View.OnClickListener() {
