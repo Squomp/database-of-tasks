@@ -32,18 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
-    <TextView
-        android:id="@+id/currentTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/startTimerBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeSpentTextView" />
-
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="wrap_content"

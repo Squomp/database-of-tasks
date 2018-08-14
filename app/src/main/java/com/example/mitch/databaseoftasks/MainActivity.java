@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         if (id == 1) { // Task List
             fragment = new TaskListFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.currentFragment, fragment);
+            ft.replace(R.id.fragment_container, fragment);
             ft.commit();
         } else if (id == 2) { // Add task
             fragment = new AddFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.currentFragment, fragment);
+            ft.replace(R.id.fragment_container, fragment);
             ft.commit();
         } else if (id == 3 && task != null) { // Edit task
             fragment = new EditFragment();
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             args.putSerializable("taskToEdit", task);
             fragment.setArguments(args);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.currentFragment, fragment);
+            ft.replace(R.id.fragment_container, fragment);
             ft.commit();
         } else if (id == 3 && task == null) {
             Toast.makeText(this.getApplicationContext(),"task must not be null to edit task", Toast.LENGTH_LONG).show();

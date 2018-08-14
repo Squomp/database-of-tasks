@@ -40,7 +40,7 @@ public class EditFragment extends Fragment {
         isComplete.setChecked(task.isCompleted());
 
         // set total time spent
-        TextView totalTime = view.findViewById(R.id.timeSpentTextView);
+        final TextView totalTime = view.findViewById(R.id.timeSpentTextView);
         totalTime.setText("Total time spent: " + task.getTimeSpent() + " hours");
 
         // add listener to checkbox
@@ -74,6 +74,7 @@ public class EditFragment extends Fragment {
                 startTimerBtn.setEnabled(true);
                 long diff = endTime - startTime;
                 task.setTimeSpent(task.getTimeSpent() + ((diff / 1000) / 60));
+                totalTime.setText("Total time spent: " + task.getTimeSpent() + " hours");
             }
         });
 
