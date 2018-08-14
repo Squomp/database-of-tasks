@@ -17,7 +17,7 @@ public class Tasks extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "Tasks";
     // Contacts table name
     private static final String TABLE_TASKS = "Tasks";
-    // Shops Table Columns names
+    // Tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_DESC = "desc";
     private static final String KEY_TIME = "time";
@@ -64,7 +64,7 @@ public class Tasks extends SQLiteOpenHelper{
     }
 
     // Getting All task
-    public List<Task> getAllShops() {
+    public List<Task> getAllTasks() {
         List<Task> taskList = new ArrayList<Task>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_TASKS;
@@ -94,7 +94,7 @@ public class Tasks extends SQLiteOpenHelper{
                 new String[]{String.valueOf(task.getID())});
     }
 
-    // Deleting a shop
+    // Deleting a task
     public void deleteTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TASKS, KEY_ID + " = ?",

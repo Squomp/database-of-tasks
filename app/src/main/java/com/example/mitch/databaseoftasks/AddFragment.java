@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class AddFragment extends Fragment {
 
@@ -27,6 +28,8 @@ public class AddFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText desc = view.findViewById(R.id.addEditText);
+                myListener.getTaskDB().addTask(new Task(desc.getText().toString()));
                 myListener.changeFragment(1, null);
             }
         });
