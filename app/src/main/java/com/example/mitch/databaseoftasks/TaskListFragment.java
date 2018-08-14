@@ -38,9 +38,9 @@ public class TaskListFragment extends ListFragment {
             }
         });
 
-        //Get listview and set clickListener
+        //Get listview and set adapter
         ListView listview = view.findViewById(android.R.id.list);
-
+        tasks = new ArrayList<>(myListener.getTaskDB().getAllTasks());
         adapter = new CustomAdapter(view.getContext(), tasks);
         listview.setAdapter(adapter);
 
