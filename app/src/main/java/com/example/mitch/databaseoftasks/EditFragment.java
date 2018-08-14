@@ -72,9 +72,9 @@ public class EditFragment extends Fragment {
                 endTime = System.currentTimeMillis();
                 stopTimerBtn.setEnabled(false);
                 startTimerBtn.setEnabled(true);
-                long diff = endTime - startTime;
+                double diff = endTime - startTime;
                 task.setTimeSpent(task.getTimeSpent() + ((diff / 1000) / 60));
-                totalTime.setText("Total time spent: " + task.getTimeSpent() + " hours");
+                totalTime.setText("Total time spent: " + String.format("%.2f", task.getTimeSpent()) + " hours");
             }
         });
 
@@ -94,7 +94,7 @@ public class EditFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                task.setTaskDesc(taskDesc.toString());
+                task.setTaskDesc(taskDesc.getText().toString());
                 myListener.getTaskDB().updateTask(task);
                 myListener.changeFragment(1, null);
             }

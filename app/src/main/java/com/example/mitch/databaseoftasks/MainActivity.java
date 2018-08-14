@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         taskDB = new Tasks(this);
+        changeFragment(1, null);
     }
 
     @Override

@@ -6,10 +6,4 @@
     tools:context=".MainActivity"
     android:id="@+id/fragment_container">
 
-    <fragment
-        android:id="@+id/currentFragment"
-        android:name="com.example.mitch.databaseoftasks.TaskListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 </FrameLayout>

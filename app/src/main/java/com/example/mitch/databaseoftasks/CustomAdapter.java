@@ -55,7 +55,11 @@ public class CustomAdapter extends BaseAdapter {
         final TextView task = convertView.findViewById(R.id.taskTextView);
         task.setText(tasks.get(position).getTaskDesc());
 
+        TextView timeText = convertView.findViewById(R.id.timeTextView);
+        timeText.setText(String.format("%.2f", tasks.get(position).getTimeSpent()) + " hours");
+
         CheckBox cb = convertView.findViewById(R.id.completedCheckBox);
+        cb.setChecked(tasks.get(position).isCompleted());
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
