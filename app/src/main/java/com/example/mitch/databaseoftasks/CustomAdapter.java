@@ -31,12 +31,12 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return tasks.size();
+        return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return tasks.get(position);
+        return null;
     }
 
     @Override
