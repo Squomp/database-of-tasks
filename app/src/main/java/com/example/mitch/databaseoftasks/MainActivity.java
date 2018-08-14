@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public Tasks getTaskDB() {
+        if (taskDB == null) {
+            taskDB = new Tasks(this);
+        }
         return taskDB;
     }
 }
