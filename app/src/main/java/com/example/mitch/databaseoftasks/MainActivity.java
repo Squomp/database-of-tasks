@@ -42,4 +42,5 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             Toast.makeText(this.getApplicationContext(),"task must not be null to edit task", Toast.LENGTH_LONG).show();
         }
     }
+
 }
