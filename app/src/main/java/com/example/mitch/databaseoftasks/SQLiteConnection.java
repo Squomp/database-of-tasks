@@ -9,20 +9,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tasks extends SQLiteOpenHelper{
+public class SQLiteConnection extends SQLiteOpenHelper implements DBConnection{
 
     // Database Version
     private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "Tasks";
+    private static final String DATABASE_NAME = "SQLiteConnection";
     // Contacts table name
     private static final String TABLE_TASKS = "Tasks";
-    // Tasks Table Columns names
+    // SQLiteConnection Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_DESC = "desc";
     private static final String KEY_TIME = "time";
     private static final String KEY_COMPLETED = "completed";
-    public Tasks(Context context) {
+    public SQLiteConnection(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -42,6 +42,7 @@ public class Tasks extends SQLiteOpenHelper{
     }
 
     // Adding new task
+    @Override
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -54,19 +55,21 @@ public class Tasks extends SQLiteOpenHelper{
     }
 
     // Getting one task
-    public Task getTask(int id) {
+    @Override
+    public Task getTask(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_TASKS, new String[] { KEY_ID,
                         KEY_DESC, KEY_TIME, KEY_COMPLETED }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+                new String[] { id }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        Task task = new Task(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getDouble(2), cursor.getInt(3) > 0);
+        Task task = new Task(cursor.getString(0), cursor.getString(1), cursor.getDouble(2), cursor.getInt(3) > 0);
     // return task
         return task;
     }
 
     // Getting All task
+    @Override
     public List<Task> getAllTasks() {
         List<Task> taskList = new ArrayList<Task>();
         // Select All Query
@@ -76,7 +79,7 @@ public class Tasks extends SQLiteOpenHelper{
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Task task = new Task(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getDouble(2), cursor.getInt(3) > 0);
+                Task task = new Task(cursor.getString(0), cursor.getString(1), cursor.getDouble(2), cursor.getInt(3) > 0);
                 // Adding contact to list
                 taskList.add(task);
             } while (cursor.moveToNext());
@@ -86,6 +89,7 @@ public class Tasks extends SQLiteOpenHelper{
     }
 
     // Updating a task
+    @Override
     public int updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -94,14 +98,15 @@ public class Tasks extends SQLiteOpenHelper{
         values.put(KEY_COMPLETED, task.isCompleted());
         // updating row
         return db.update(TABLE_TASKS, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(task.getID())});
+                new String[]{ task.getStrID() });
     }
 
     // Deleting a task
+    @Override
     public void deleteTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TASKS, KEY_ID + " = ?",
-                new String[] { String.valueOf(task.getID()) });
+                new String[] { task.getStrID() });
         db.close();
     }
 }

@@ -73,7 +73,7 @@ public class CustomAdapter extends BaseAdapter {
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // switch fragment
-                myListener.changeFragment(3, myListener.getTaskDB().getTask(tasks.get(position).getID()));
+                myListener.changeFragment(3, myListener.getTaskDB().getTask(tasks.get(position).getStrID()));
             }
         });
         return convertView;
