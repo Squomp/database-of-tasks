@@ -1,6 +1,7 @@
 package com.example.mitch.databaseoftasks;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 public class CustomAdapter extends BaseAdapter {
@@ -69,11 +78,34 @@ public class CustomAdapter extends BaseAdapter {
             }
         });
 
+        DatabaseReference dbTasks = FirebaseDatabase.getInstance().getReference("tasks");
+        dbTasks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tasks.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Task task = postSnapshot.getValue(Task.class);
+                    tasks.add(task);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
         Button btn = convertView.findViewById(R.id.taskEditButton);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // switch fragment
-                myListener.changeFragment(3, myListener.getTaskDB().getTask(tasks.get(position).getStrID()));
+                List<Task> tasks = myListener.getTaskDB().getAllTasks();
+                Task taskToEdit = null;
+                for (Task t : tasks) {
+                    if (t.getStrID().equals(tasks.get(position).getStrID())) {
+                        taskToEdit = t;
+                    }
+                }
+                myListener.changeFragment(3, taskToEdit);
             }
         });
         return convertView;

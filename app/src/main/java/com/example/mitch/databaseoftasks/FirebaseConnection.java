@@ -1,6 +1,5 @@
 package com.example.mitch.databaseoftasks;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,8 +35,10 @@ public class FirebaseConnection implements DBConnection {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Task value = dataSnapshot.getValue(Task.class);
-                Log.d(TAG, "Value is: " + value);
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Task task = postSnapshot.getValue(Task.class);
+                    tasks.add(task);
+                }
             }
 
             @Override

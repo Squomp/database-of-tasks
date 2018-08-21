@@ -12,6 +12,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class EditFragment extends Fragment {
 
     private OnFragmentInteractionListener myListener;
@@ -83,8 +86,10 @@ public class EditFragment extends Fragment {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myListener.getTaskDB().deleteTask(task);
+//                myListener.getTaskDB().deleteTask(task);
                 myListener.changeFragment(1, null);
+                DatabaseReference dr = FirebaseDatabase.getInstance().getReference("tasks").child(task.getStrID());
+                dr.removeValue();
             }
         });
 
@@ -95,7 +100,9 @@ public class EditFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 task.setTaskDesc(taskDesc.getText().toString());
-                myListener.getTaskDB().updateTask(task);
+                DatabaseReference dr = FirebaseDatabase.getInstance().getReference("tasks").child(task.getStrID());
+                dr.setValue(task);
+//                myListener.getTaskDB().updateTask(task);
                 myListener.changeFragment(1, null);
             }
         });
