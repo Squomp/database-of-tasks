@@ -1,7 +1,5 @@
 package com.example.mitch.databaseoftasks;
 
-import android.app.Activity;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -6,15 +6,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
-    private Tasks taskDB;
+    private DBConnection taskDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        taskDB = new Tasks(this);
+        taskDB = new FirebaseConnection();
         changeFragment(1, null);
     }
 
@@ -45,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public Tasks getTaskDB() {
+    public DBConnection getTaskDB() {
         if (taskDB == null) {
-            taskDB = new Tasks(this);
+            taskDB = new FirebaseConnection();
         }
         return taskDB;
     }

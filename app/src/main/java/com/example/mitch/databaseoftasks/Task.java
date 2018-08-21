@@ -4,10 +4,13 @@ import java.io.Serializable;
 
 public class Task implements Serializable{
 
-    private int ID;
+    private String strID = "";
     private String TaskDesc;
     private double timeSpent;
     private boolean isCompleted;
+
+    public Task() {
+    }
 
     public Task(String taskDesc) {
         TaskDesc = taskDesc;
@@ -15,19 +18,19 @@ public class Task implements Serializable{
         this.isCompleted = false;
     }
 
-    public Task(int ID, String taskDesc, double timeSpent, boolean isCompleted) {
-        this.ID = ID;
-        this.TaskDesc = taskDesc;
+    public Task(String strID, String taskDesc, double timeSpent, boolean isCompleted) {
+        this.strID = strID;
+        TaskDesc = taskDesc;
         this.timeSpent = timeSpent;
         this.isCompleted = isCompleted;
     }
 
-    public int getID() {
-        return ID;
+    public String getStrID() {
+        return strID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setStrID(String strID) {
+        this.strID = strID;
     }
 
     public String getTaskDesc() {
